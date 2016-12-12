@@ -14,7 +14,7 @@ for(var i=1;i<pageNum;i++){
 }
 function getConnection(){
     var connection = mysql.createConnection({
-        host     : '123.57.242.199',
+        host     : 'localhost',
         user     : 'root',
         password : 'admin',
         port     :3306,

@@ -7,7 +7,7 @@ var superagent = require("superagent"),
     logger = require('./logger');
 logger.setLevel('INFO');
 logger.info('4s crawler start');
-var pageNum = 50,
+var pageNum = 2759,
     urls = [];
 for(var i=1;i<pageNum;i++){
     urls.push("http://www.chewen.com/dealer/0-0-0-0-0-0-"+i+"-0-0-0-0");

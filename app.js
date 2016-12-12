@@ -55,18 +55,16 @@ function doSql(arr){
     }
 }
 var reptileMove = function(url,callback){
-    //延迟毫秒数
     var delay = parseInt(((Math.random()+005) * 30000000) % 5000, 10);
     curCount++;
     logger.info('现在的并发数是', curCount, '，正在抓取的是', url, '，耗时' + delay + '毫秒');
     superagent.get(url)
         .end(function(err,sres){
-            // 常规的错误处理
             if (err) {
-                console.log(err);
+                logger.info(err);
                 return;
             }
-            //sres.text 里面存储着请求返回的 html 内容
+            //读取流构造伪dom树
             var $ = cheerio.load(sres.text);
             var $arr = $(".jxs_tita_wbox .jxs_dlabox");
             var resultArr = [];
@@ -86,5 +84,7 @@ async.mapLimit(urls, 3 ,function (url, callback) {
     logger.info(url);
     reptileMove(url, callback);
 }, function (err,result) {
-
+    if(err){
+        logger.info(err);
+    }
 });
